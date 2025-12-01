@@ -1,21 +1,27 @@
 /*********************************************
 * Name: Cory Davis
-* Date: 11/23/2025
+* Date: 11/30/2025
 * Purpose:
-* Dmonstrates inheritance from MenuItem and represents a drink item with temperature.
+* Demonstrates inheritance from MenuItem and represents a drink item with temperature
 **********************************************/
 
-public class DrinkItem : MenuItem
+public class DrinkItem : MenuItemBase
 {
-    public bool IsCold { get; set; }
+    private bool IsCold { get; set; }
 
-    public DrinkItem(string name, decimal price, bool isCold)
+    // parameterized constructor
+    public DrinkItem(string name, decimal price, bool isCold) 
         : base(name, price)
     {
         IsCold = isCold;
     }
 
-    // Polymorphism: Overriding Display()
+    // default constructor
+    public DrinkItem() : base("Unknown Drink", 0.0m)
+    {
+        IsCold = true;
+    }
+
     public override void Display()
     {
         Console.WriteLine($"{Name} - ${Price:F2} | {(IsCold ? "Cold" : "Hot")} Drink");

@@ -1,6 +1,6 @@
 /*********************************************
 * Name: Cory Davis
-* Date: 11/23/2025
+* Date: 11/30/2025
 * Purpose:
 *   Demonstrates composition.
 *   An Order HAS a Customer and HAS MANY MenuItems.
@@ -10,20 +10,18 @@
 public class Order : IDisplayable
 {
     public Customer CustomerInfo { get; set; }
-    public List<MenuItem> Items { get; set; }
-
+    public List<MenuItemBase> Items { get; set; } 
     public Order(Customer customer)
     {
         CustomerInfo = customer;
-        Items = new List<MenuItem>();
+        Items = new List<MenuItemBase>();
     }
 
-    public void AddItem(MenuItem item)
+    public void AddItem(MenuItemBase item) 
     {
         Items.Add(item);
     }
 
-    // order details
     public void Display()
     {
         Console.WriteLine($"\nOrder Summary for {CustomerInfo.Name}");

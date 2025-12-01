@@ -1,6 +1,6 @@
 ﻿/*********************************************
 * Name: Cory Davis
-* Date: 11/23/2025
+* Date: 11/30/2025
 * Purpose:
 * Main entry point for Week 2 project.
 **********************************************/
@@ -12,42 +12,39 @@ public class Program
 {
     public static void Main(string[] args)
     {
-        Console.Title = "Restaurant Ordering System";
+        Console.Title = "Restaurant Ordering System - Week 3";
 
-        Console.WriteLine("      Week 2 Project - Restaurant Ordering System");
-        Console.WriteLine("           By: Cory Davis");
-        Console.WriteLine("Welcome to the Restaurant Ordering System!");
-        Console.WriteLine("Press ENTER to begin.");
+        Console.WriteLine("Cory Davis - Week 3: Abstraction, Constructors, Access Specifiers");
+        Console.WriteLine("Welcome to the Restaurant Ordering System! \n");
+        Console.WriteLine("Press ENTER to continue...");
         Console.ReadLine();
 
-        // customer
+        // customers
         Customer customer = new Customer("Cory Davis");
 
         // menu items
-        MenuItem burger = new FoodItem("Classic Burger", 8.99m, 850);
-        MenuItem fries = new FoodItem("French Fries", 3.49m, 420);
-        MenuItem cola = new DrinkItem("Cola", 2.49m, true);
+        FoodItem burger = new FoodItem("Classic Burger", 8.99m, 850);
+        FoodItem fries = new FoodItem("French Fries", 3.49m, 420);
+        DrinkItem cola = new DrinkItem("Cola", 2.49m, true);
 
-        // create order
+        // copy constructor
+        FoodItem burgerCopy = new FoodItem(burger);
+
+        // create the order
         Order order = new Order(customer);
         order.AddItem(burger);
         order.AddItem(fries);
         order.AddItem(cola);
 
-        // interface list
+        // display menu items
+        List<MenuItemBase> menuItems = new List<MenuItemBase>() { burger, fries, cola };
         Console.WriteLine("Menu Items:\n");
-
-        List<IDisplayable> displayObjects = new List<IDisplayable>()
+        foreach (var item in menuItems)
         {
-            burger, fries, cola
-        };
-
-        foreach (var obj in displayObjects)
-        {
-            obj.Display(); 
+            item.Display(); // Polymorphism via abstract base
         }
 
-        // display full order
+        // display order
         Console.WriteLine("\n--------------------------------------");
         order.Display();
 
